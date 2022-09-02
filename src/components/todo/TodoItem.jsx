@@ -19,12 +19,8 @@ function TodoItem({ todoData, setTodos, setErrorMessage }) {
   }
 
   const onClickToggleTodo = todo => {
-    todo.isCompleted = !todo.isCompleted
-    updateTodo({
-      todo: todo.todo,
-      isCompleted: todo.isCompleted,
-      id: todo.id,
-    }).then(res => {
+    const newTodo = { ...todo, isCompleted: !todo.isCompleted }
+    updateTodo(newTodo).then(res => {
       if (res.status === 200) {
         refetchTodos()
       }
